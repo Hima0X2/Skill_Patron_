@@ -84,10 +84,8 @@ public class Quiz extends JFrame implements ActionListener {
 			new RulesPage(name);
 		}if(e.getSource() == exitButton) {
 			System.exit(0);
-		}
-		
+		}	
 	}
-
 	public static void main(String[] args) { 
 		new Quiz();
 	}
