@@ -1,0 +1,6 @@
+sam 10
+sam	5
+s	0
+sam	0
+sam	0
+z	10
