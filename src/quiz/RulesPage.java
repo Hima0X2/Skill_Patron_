@@ -35,6 +35,7 @@ public class RulesPage extends JFrame implements ActionListener{
 			+ "2. Total time to complete this quiz is 30 sec.\n"
 			+ "3. Total number of qustions are 7.\n"
 			+ "4. 5 marks for every Correct ans.\n\n"
+			+"5.If doesn't submit in 30 sec then Score will be 0.\n"
 			+ "  Next - For going to next qustions.\n\n" 
 			+ "  Submit - For sumbit the quiz."
 			
