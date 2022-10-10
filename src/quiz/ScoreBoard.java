@@ -36,7 +36,7 @@ public class ScoreBoard extends JFrame implements ActionListener{
 		
 		String name=Quiz.nameTextField.getText();
 		
-		JLabel score = new JLabel("Your score is " + Ques.score);
+		JLabel score = new JLabel("Your score is " + scores);
 		score.setBounds(350, 250, 400, 30);
 		score.setFont(new Font("MV Boil", Font.BOLD, 24));
 		score.setForeground(new Color(1, 84, 134)); 
@@ -65,6 +65,7 @@ public class ScoreBoard extends JFrame implements ActionListener{
 		play.addActionListener(this);
 		play.setFocusable(false);
 		add(play);
+		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) { 
@@ -78,7 +79,7 @@ public class ScoreBoard extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		 new ScoreBoard(0).setVisible(true);
+		 new ScoreBoard(0);
 
 	} 
 }
