@@ -103,6 +103,7 @@ public class Ques extends JFrame implements ActionListener {
 		ans1.setForeground(new Color(1, 84, 134));
 		ans1.setBackground(new Color(246, 246, 246)); 
 		ans1.setFocusable(false); 
+		ans1.addActionListener(this);
 		add(ans1);
 
 		ans2 = new JRadioButton("");
@@ -111,6 +112,7 @@ public class Ques extends JFrame implements ActionListener {
 		ans2.setBackground(new Color(246, 246, 246));
 		ans2.setForeground(new Color(1, 84, 134));
 		ans2.setFocusable(false); 
+		ans2.addActionListener(this);
 		add(ans2);
 
 		ans3 = new JRadioButton("");
@@ -119,6 +121,7 @@ public class Ques extends JFrame implements ActionListener {
 		ans3.setBackground(new Color(246, 246, 246));
 		ans3.setForeground(new Color(1, 84, 134));
 		ans3.setFocusable(false); 
+		ans3.addActionListener(this);
 		add(ans3);
 
 		ans4 = new JRadioButton("");
@@ -126,7 +129,8 @@ public class Ques extends JFrame implements ActionListener {
 		ans4.setFont(new Font("MV Boil", Font.PLAIN, 16));
 		ans4.setBackground(new Color(246, 246, 246));
 		ans4.setForeground(new Color(1, 84, 134));
-		ans4.setFocusable(false);  
+		ans4.setFocusable(false);
+		ans4.addActionListener(this);
 		add(ans4);
 		
 		options = new ButtonGroup();
@@ -173,6 +177,7 @@ public class Ques extends JFrame implements ActionListener {
 		showButton.setBackground(new Color(1, 84, 134));
 		showButton.setForeground(new Color(255, 255, 255)); 
 		showButton.setFocusable(false); 
+		showButton.setEnabled(false);
 		add(showButton);
 		showButton.addActionListener(this);
 		label=new Label();
@@ -198,6 +203,7 @@ public class Ques extends JFrame implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent e) { 
 		if(e.getSource() == nextButton) {
+			showButton.setEnabled(false);
 			label.setText("");
 			showButton.setText("Show Answer");
 			ok=true;
@@ -212,11 +218,10 @@ public class Ques extends JFrame implements ActionListener {
 		}else if(e.getSource() == clearButton) { 
 			options.clearSelection();
 		}
-		//System.out.println(qAns[count][1]);
 		if(e.getSource()==showButton&&ok==true) {
 			label.setText(qAns[count][1]);
-			showButton.setText("Hide Answer");
-			ok=false;
+				showButton.setText("Hide Answer");
+				ok=false;
 		}
 		else if(e.getSource()==showButton&&ok==false) {
 			label.setText("");
@@ -238,6 +243,9 @@ public class Ques extends JFrame implements ActionListener {
         	new ScoreBoard(score);
         	count = 0;
 			} 
+		if(e.getSource()==ans1||e.getSource()==ans2||e.getSource()==ans3||e.getSource()==ans4) {
+			showButton.setEnabled(true);
+		}
 	}
 	
 	public void paint(Graphics g){
@@ -257,17 +265,12 @@ public class Ques extends JFrame implements ActionListener {
         	new ScoreBoard(score).setVisible(true);  
         	time = 0; 
         	start(0);
-		}  
-
+		}
         if(count == 6) { 
 			nextButton.setEnabled(false);
 			submitButton.setEnabled(true);
 		}else if(count != 6) {  
 			submitButton.setEnabled(false);
-		}
-        
+	}    
 	}
-	public static void main(String[] args) {
-		new Ques();
-	}  
 }
