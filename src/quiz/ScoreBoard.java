@@ -2,15 +2,20 @@ package quiz;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 import javax.swing.*;
 
 public class ScoreBoard extends JFrame implements ActionListener{
 
-	JButton cancel, play, show;
-	
+	JButton cancel, play, show,high;
+	int max,num;
+	String name,winner,compare;
 	public ScoreBoard(int scores) { 
 		setBounds(250, 50, 700, 600);
 		getContentPane().setBackground(new Color(246, 246, 246));
@@ -46,8 +51,27 @@ public class ScoreBoard extends JFrame implements ActionListener{
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.append(name+'\t'+scores+'\n');
 			bw.close();
+			
+			FileWriter fw1 = new FileWriter("num.txt", true);
+			BufferedWriter bw1 = new BufferedWriter(fw1);
+			bw1.append(String.valueOf(scores)+'\n');
+			bw1.close();
+			
+			FileWriter fw3 = new FileWriter("name.txt", true);
+			BufferedWriter bw3 = new BufferedWriter(fw3);
+			bw3.append(name+'\n');
+			bw3.close();
+			
 		} catch (Exception e) {
 		}
+		high = new JButton("High Score");
+		high.setBounds(350, 350, 300, 30);
+		high.setForeground(new Color(246, 246, 246));
+		high.setBackground(new Color(1, 84, 134));
+		high.setFont(new Font("MV Boil", Font.BOLD, 18));
+		high.addActionListener(this);
+		add(high);
+		
 		cancel = new JButton("Cancel");
 		cancel.setBounds(530, 450, 100, 40);
 		cancel.setForeground(new Color(246, 246, 246));
@@ -69,17 +93,30 @@ public class ScoreBoard extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) { 
-		
 		if(e.getSource() == cancel) {
 			System.exit(0);
 		}else if(e.getSource() == play) {
 			this.setVisible(false);
 			new Quiz().setVisible(true);
 		}
+		else if(e.getSource() == high) {
+			try {
+				 Scanner fileScanner = new Scanner(new File("num.txt"));
+				 Scanner fileScannername = new Scanner(new File("name.txt"));
+			         max = fileScanner.nextInt();
+			         winner=fileScannername.nextLine();
+			        while (fileScanner.hasNextInt()) {
+			             num = fileScanner.nextInt();
+			             name= fileScannername.nextLine();
+			            if (num > max) {
+			                max=num;
+			                winner=name;
+			            }
+			        }
+				high.setText(winner+" = "+max);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
 	}
-	
-	public static void main(String[] args) {
-		 new ScoreBoard(0);
-
-	} 
 }
