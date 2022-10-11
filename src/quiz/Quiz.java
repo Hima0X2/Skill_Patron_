@@ -1,12 +1,11 @@
 package quiz;
 
-import java.awt.*; 
+import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 public class Quiz extends JFrame implements ActionListener {
-
-
+	
 	JButton startButton, exitButton;
 	static JTextField nameTextField;
 	
@@ -30,7 +29,7 @@ public class Quiz extends JFrame implements ActionListener {
 		
 		JTextArea descLabel = new JTextArea(1, 3); 
 		descLabel.setText( 
-			 "Hello!!, we are Java Quzies App. We are to\n"
+			 "Hello!!, we are make Java Quiz App. We are to\n"
 			 + "test your knowledge."
 			 + "\nWe will happy to have you here." 
 				);
@@ -89,5 +88,4 @@ public class Quiz extends JFrame implements ActionListener {
 	public static void main(String[] args) { 
 		new Quiz();
 	}
-
 }
