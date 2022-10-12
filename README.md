@@ -1,1 +1,1 @@
-This Is a Quize base project
+This Is a Quiz base project
